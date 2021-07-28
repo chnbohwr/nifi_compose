@@ -14,7 +14,7 @@ services:
       - ./database_repository:/opt/nifi/nifi-current/database_repository
       - ./extensions:/opt/nifi/nifi-current/extensions
       - ./flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
-      - .provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - ./provenance_repository:/opt/nifi/nifi-current/provenance_repository
   postgres:
     image: postgres
     environment:
