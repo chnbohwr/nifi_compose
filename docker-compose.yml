@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  nifi:
+    image: apache/nifi
+    environment: 
+      NIFI_WEB_HTTP_PORT: 8080
+      NIFI_WEB_HTTP_HOST: 0.0.0.0
+    ports: 
+      - 8080:8080
+    volumes: 
+      - ./data:/data
+      - ./driver:/driver
+      - ./content_repository:/opt/nifi/nifi-current/content_repository
+      - ./database_repository:/opt/nifi/nifi-current/database_repository
+      - ./extensions:/opt/nifi/nifi-current/extensions
+      - ./flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - .provenance_repository:/opt/nifi/nifi-current/provenance_repository
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: hyman
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment: 
+      PGADMIN_DEFAULT_EMAIL: hyman@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234
+    ports:
+      - "8081:80"  
+volumes: 
+  postgres:
