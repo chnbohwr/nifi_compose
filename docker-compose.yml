@@ -22,7 +22,7 @@ services:
       POSTGRES_PASSWORD: 1234
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
+       - ./postgres:/data/postgres
     ports:
       - "5432:5432"
   pgadmin:
@@ -31,6 +31,4 @@ services:
       PGADMIN_DEFAULT_EMAIL: hyman@gmail.com
       PGADMIN_DEFAULT_PASSWORD: 1234
     ports:
-      - "8081:80"  
-volumes: 
-  postgres:
+      - "8081:80"
